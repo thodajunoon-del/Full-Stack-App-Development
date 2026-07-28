@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            <div class="logo-text">
+
+                <h2>Student</h2>
+
+                <p>Management System</p>
+
+            </div>
+
+        </div>
+
+        <ul class="menu">
+
+            <li class="active"
+                onclick="showSection('dashboardSection',this)">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </li>
+
+            <li onclick="showSection('newStudentSection',this)">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Add Student
+
+            </li>
+
+            <li onclick="showSection('updateStudentSection',this)">
+
+                <i class="fa-solid fa-user-pen"></i>
+
+                Update Student
+
+            </li>
+
+            <li onclick="showSection('deleteStudentSection',this)">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Remove Student
+
+            </li>
+
+            <li onclick="showSection('viewStudentSection',this);loadStudents();">
+
+                <i class="fa-solid fa-users"></i>
+
+                View Students
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+
+    <!-- ================= Main Content ================= -->
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <h1>Student Management System</h1>
+
+            <p>Manage student records efficiently</p>
+
+        </div>
+
+
+
+        <!-- Dashboard -->
+
+        <section id="dashboardSection" class="content-section">
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <h2>Total Students</h2>
+
+                    <p id="totalStudents">0</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h2>Departments</h2>
+
+                    <p>9</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h2>Status</h2>
+
+                    <p>Active</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Add Student -->
+
+        <section id="newStudentSection"
+
+            class="content-section"
+
+            style="display:none;">
+
+            <div class="form-card">
+
+                <h2>Add New Student</h2>
+
+                <div class="form-grid">
+
+                    <input
+
+                        type="text"
+
+                        id="name"
+
+                        placeholder="Full Name">
+
+                    <input
+
+                        type="email"
+
+                        id="email"
+
+                        placeholder="Email Address">
+
+                    <input
+
+                        type="date"
+
+                        id="dob">
+
+                    <select id="department">
+
+                        <option value="">Select Department</option>
+
+                        <option>CSE</option>
+
+                        <option>IT</option>
+
+                        <option>ECE</option>
+
+                        <option>EEE</option>
+
+                        <option>AIDS</option>
+
+                        <option>AIML</option>
+
+                        <option>CSBS</option>
+
+                        <option>Mechanical</option>
+
+                        <option>Civil</option>
+
+                    </select>
+
+                    <input
+
+                        type="text"
+
+                        id="phone"
+
+                        maxlength="10"
+
+                        placeholder="Phone Number">
+
+                </div>
+
+                <button class="primary-btn"
+
+                    onclick="register()">
+
+                    Add Student
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+<!-- ================= Update Student ================= -->
+
+<section id="updateStudentSection"
+         class="content-section"
+         style="display:none;">
+
+    <div class="form-card">
+
+        <h2>Update Student</h2>
+
+        <div class="form-grid">
+
+            <select id="updateId" onchange="loadSelectedStudent()">
+
+                <option value="">Select Student</option>
+
+            </select>
+
+            <input
+                type="text"
+                id="updateName"
+                placeholder="Student Name">
+
+            <input
+                type="email"
+                id="updateEmail"
+                placeholder="Email Address">
+
+            <select id="updateDepartment">
+
+                <option value="">Select Department</option>
+
+                <option>CSE</option>
+                <option>IT</option>
+                <option>ECE</option>
+                <option>EEE</option>
+                <option>AIDS</option>
+                <option>AIML</option>
+                <option>CSBS</option>
+                <option>Mechanical</option>
+                <option>Civil</option>
+
+            </select>
+
+            <input
+                type="text"
+                id="updatePhone"
+                maxlength="10"
+                placeholder="Phone Number">
+
+        </div>
+
+        <button class="update-btn"
+                onclick="updateStudent()">
+
+            Update Student
+
+        </button>
+
+    </div>
+
+</section>
+<!-- ================= Remove Student ================= -->
+
+<section id="deleteStudentSection"
+         class="content-section"
+         style="display:none;">
+
+    <div class="form-card">
+
+        <h2>Remove Student</h2>
+
+        <select id="deleteId">
+
+            <option value="">Select Student</option>
+
+        </select>
+
+        <button class="delete-btn"
+                onclick="deleteStudent()">
+
+            Delete Student
+
+        </button>
+
+    </div>
+
+</section>        <!-- View Students -->
+
+        <section id="viewStudentSection"
+
+            class="content-section"
+
+            style="display:none;">
+
+            <div class="table-card">
+
+                <h2>Registered Students</h2>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Name</th>
+
+                                <th>Email</th>
+
+                                <th>DOB</th>
+
+                                <th>Department</th>
+
+                                <th>Phone</th>
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
