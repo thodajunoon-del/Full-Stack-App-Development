@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Audit Logging</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h2>ENTERPRISE AUDIT LOGGING</h2>
+            <p>Database Triggers & Daily Activity Views</p>
+        </div>
+
+        <div class="flex-row-responsive">
+            <!-- Form 1: Add Employee -->
+            <div class="form-container" style="flex: 1; margin-bottom: 24px;">
+                <h3 style="display: flex; justify-content: space-between;">
+                    <span style="display:flex; align-items: center; gap: 8px;"><i class="fa-solid fa-user-plus"></i> Hire Employee</span>
+                    <span style="font-size: 11px; font-weight: normal; padding: 4px 8px; border-radius: 4px; background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd;">Fires INSERT Trigger</span>
+                </h3>
+                <form id="add-employee-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="emp-name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Position</label>
+                            <input type="text" id="emp-position" placeholder="Position" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Salary (₹)</label>
+                            <input type="number" id="emp-salary" min="1" placeholder="Salary" required>
+                        </div>
+                        <div class="form-group btn-group">
+                            <button type="submit" id="add-emp-btn">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Form 2: Update Employee -->
+            <div class="form-container" style="flex: 1; margin-bottom: 24px; border-left: 4px solid var(--primary-color);">
+                <h3 style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="display:flex; align-items: center; gap: 8px;"><i class="fa-solid fa-money-check-dollar"></i> Update Salary</span>
+                    <span style="font-size: 11px; font-weight: normal; padding: 4px 8px; border-radius: 4px; background: #fef3c7; color: #d97706; border: 1px solid #fde68a;">Fires UPDATE Trigger</span>
+                </h3>
+                
+                <form id="update-employee-form">
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label>Employee</label>
+                            <select id="update-emp-select" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>New Salary (₹)</label>
+                            <input type="number" id="update-emp-salary" min="1" placeholder="Salary" required>
+                        </div>
+                        <div class="form-group btn-group" style="flex: 1;">
+                            <button type="submit" id="update-emp-btn" style="background: #f59e0b;">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="flex-row-responsive">
+            <!-- Complete Report -->
+            <div class="table-container" style="flex: 1.2; margin-top: 0; background: var(--bg-card); padding: 24px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                <h3 style="font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-list-check" style="color: var(--primary-color);"></i> Raw Audit Log (Generated via Triggers)
+                </h3>
+                <table style="margin-top: 0;">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Emp ID</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-table-body">
+                        <tr><td colspan="3" style="text-align: center;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Top Spenders List -->
+            <div class="table-container" style="flex: 1; background: var(--bg-card); padding: 24px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                <h3 style="font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-calendar-day" style="color: #10b981;"></i> Daily Activity Report (From MySQL View)
+                </h3>
+                <table style="margin-top: 0;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Total Actions</th>
+                            <th>Inserts</th>
+                            <th>Updates</th>
+                        </tr>
+                    </thead>
+                    <tbody id="daily-table-body">
+                        <tr><td colspan="4" style="text-align: center;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

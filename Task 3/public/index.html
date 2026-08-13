@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>WELCOME BACK</h2>
+                <p>Welcome back! Please enter your details.</p>
+            </div>
+            
+            <form id="login-form">
+                <div id="message-box" class="message-box hidden"></div>
+                
+                <div class="input-group">
+                    <label for="username">Email</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="username" placeholder="Enter your email">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="•••••••••">
+                        <i class="fa-regular fa-eye" id="toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <label class="remember-me">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" id="submit-btn">
+                    <span id="btn-text">Sign in</span>
+                </button>
+                
+                <div class="auth-switch">
+                    Don't have an account? <a href="register.html">Sign up for free!</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
