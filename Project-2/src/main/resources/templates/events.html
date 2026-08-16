@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Upcoming Events')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container">
+    <h2 class="mb-2">Upcoming Events</h2>
+    
+    <div th:if="${events.empty}" class="card">
+        <p>No events found. Check back later!</p>
+    </div>
+
+    <div class="grid" th:unless="${events.empty}">
+        <div th:each="event : ${events}" class="card">
+            <h3 th:text="${event.name}">Event Name</h3>
+            <p><strong>Date:</strong> <span th:text="${event.date}">Date</span></p>
+            <p><strong>Department:</strong> <span th:text="${event.department}">Dept</span></p>
+            <p><strong>Type:</strong> <span th:text="${event.type}">Type</span></p>
+            <p th:text="${event.description}" style="margin: 1rem 0;">Description...</p>
+            <a th:href="@{/events/{id}/register(id=${event.id})}" class="btn btn-primary">Register</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

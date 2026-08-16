@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-dark: #8A737D;
+  --primary-light: #D2B0A2;
+  --neutral-bg: #F9DBC2;
+  --soft-neutral: #D2C4C4;
+  --accent: #9F9A7F;
+  --text: #33312E;
+  
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--neutral-bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+input, select {
+  font-family: var(--font-body);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+}
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Base Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  border-radius: 24px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  background-color: var(--primary-dark);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(138, 115, 125, 0.3);
+}
+
+.btn:hover {
+  background-color: var(--accent);
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(159, 154, 127, 0.4);
+}
+
+.btn:disabled {
+  background-color: var(--soft-neutral);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Section styling */
+section {
+  padding: 6rem 0;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+}
+
+.form-control {
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-dark);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(138, 115, 125, 0.1);
+}
+
+.form-control::placeholder {
+  color: var(--soft-neutral);
+}

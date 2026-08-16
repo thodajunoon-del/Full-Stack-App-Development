@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Event Form')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container" style="max-width: 600px;">
+    <div class="card">
+        <h2 class="mb-2" th:text="${event.id == null ? 'Add New Event' : 'Edit Event'}">Form</h2>
+        
+        <form th:action="@{/admin/events/save}" th:object="${event}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            
+            <div class="form-group">
+                <label for="name">Event Name</label>
+                <input type="text" id="name" th:field="*{name}" class="form-control">
+                <span class="error-msg" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" th:field="*{date}" class="form-control">
+                <span class="error-msg" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Error</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" id="department" th:field="*{department}" class="form-control">
+                <span class="error-msg" th:if="${#fields.hasErrors('department')}" th:errors="*{department}">Error</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="type">Type (e.g., Workshop, Seminar)</label>
+                <input type="text" id="type" th:field="*{type}" class="form-control">
+                <span class="error-msg" th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Error</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" th:field="*{description}" class="form-control" rows="4"></textarea>
+                <span class="error-msg" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</span>
+            </div>
+            
+            <div style="margin-top: 1.5rem;">
+                <button type="submit" class="btn btn-primary">Save Event</button>
+                <a th:href="@{/admin/events}" class="btn btn-danger" style="margin-left: 1rem;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

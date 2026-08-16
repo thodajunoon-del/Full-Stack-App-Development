@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('My Registrations')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container">
+    <h2 class="mb-2">My Registrations</h2>
+    
+    <div th:if="${param.success}" style="background: var(--success-color); color: white; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;">
+        Successfully registered for the event!
+    </div>
+
+    <div class="card mb-2" style="max-width: 500px;">
+        <form th:action="@{/my-registrations}" method="get" class="d-flex align-center">
+            <input type="email" name="email" class="form-control" placeholder="Enter your email to search" th:value="${email}" required style="margin-right: 1rem;">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    
+    <div th:if="${email != null}">
+        <h3 class="mb-1">Results for <span th:text="${email}">email</span></h3>
+        <div th:if="${registrations.empty}">
+            <p>No registrations found for this email.</p>
+        </div>
+        
+        <table class="table" th:unless="${registrations.empty}">
+            <thead>
+                <tr>
+                    <th>Registration ID</th>
+                    <th>Event Name</th>
+                    <th>Event Date</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reg : ${registrations}">
+                    <td th:text="${reg.id}">1</td>
+                    <td th:text="${reg.event.name}">Event Name</td>
+                    <td th:text="${reg.event.date}">Date</td>
+                    <td th:text="${reg.event.department}">Dept</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

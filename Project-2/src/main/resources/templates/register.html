@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Register for Event')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container" style="max-width: 600px;">
+    <div class="card">
+        <h2 class="mb-1">Register for <span th:text="${event.name}">Event</span></h2>
+        
+        <form th:action="@{/events/register}" th:object="${registration}" method="post">
+            <input type="hidden" th:field="*{event.id}" />
+            
+            <div class="form-group">
+                <label for="studentName">Student Name</label>
+                <input type="text" id="studentName" th:field="*{studentName}" class="form-control" placeholder="John Doe">
+                <span class="error-msg" th:if="${#fields.hasErrors('studentName')}" th:errors="*{studentName}">Name Error</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="studentEmail">Email Address</label>
+                <input type="email" id="studentEmail" th:field="*{studentEmail}" class="form-control" placeholder="john@example.com">
+                <span class="error-msg" th:if="${#fields.hasErrors('studentEmail')}" th:errors="*{studentEmail}">Email Error</span>
+            </div>
+            
+            <div style="margin-top: 1.5rem;">
+                <button type="submit" class="btn btn-primary">Confirm Registration</button>
+                <a th:href="@{/events}" class="btn btn-danger" style="margin-left: 1rem;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Admin Dashboard')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container">
+    <div class="d-flex justify-between align-center mb-2">
+        <h2>Admin Dashboard</h2>
+        <form th:action="@{/admin/logout}" method="post">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+    
+    <div class="grid">
+        <div class="card text-center">
+            <h3>Manage Events</h3>
+            <p class="mb-1">Create, update, and delete campus events.</p>
+            <a th:href="@{/admin/events}" class="btn btn-primary">Go to Events</a>
+        </div>
+        <div class="card text-center">
+            <h3>Registration Statistics</h3>
+            <p class="mb-1">View registration numbers across all events.</p>
+            <a th:href="@{/admin/stats}" class="btn btn-primary">View Stats</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

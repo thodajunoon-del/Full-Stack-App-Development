@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Home - Smart Campus')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container text-center">
+    <h1 class="mt-2 mb-1">Welcome to Smart Campus Event Management</h1>
+    <p class="mb-2">Discover and register for upcoming events, workshops, and seminars.</p>
+    
+    <div>
+        <a th:href="@{/events}" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.2rem;">Browse Events</a>
+    </div>
+</div>
+
+</body>
+</html>

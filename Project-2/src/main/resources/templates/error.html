@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Error')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container text-center">
+    <div class="card" style="border-top: 4px solid var(--danger-color);">
+        <h2 class="mb-1" style="color: var(--danger-color);">Oops! Something went wrong.</h2>
+        
+        <p class="mb-2" th:text="${errorMessage}">An unexpected error occurred.</p>
+        
+        <a th:href="@{/}" class="btn btn-primary">Return to Home</a>
+    </div>
+</div>
+
+</body>
+</html>
